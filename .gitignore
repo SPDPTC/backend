@@ -24,3 +24,4 @@ frankenphp
 frankenphp-worker.php
 /data/*
 /config/caddy/*
+_ide_helper*
