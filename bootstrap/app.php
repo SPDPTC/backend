@@ -16,15 +16,20 @@ return Application::configure(basePath: dirname(__DIR__))
         //
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $exceptions->render(function (NotFoundHttpException $e, Request $request) {
-            if ($request->is('api/*')) {
+        $exceptions->shouldRenderJsonWhen(function (Request $request) {
+            return $request->is('api*') || $request->expectsJson();
+        });
+
+        $exceptions->render(function (Throwable $e, Request $request) {
+            if (
+                $e instanceof NotFoundHttpException &&
+                    ! str_starts_with($request->getPathInfo(), '/api')
+            ) {
                 return response()->json([
-                    'message' => 'Record not found.',
-                ], 404);
+                    'message' => 'You need to add prefix `api` to your request.',
+                ], 400);
             }
 
-            return response()->json([
-                'message' => 'You need to add prefix `api` to your request.',
-            ], 400);
+            return null;
         });
     })->create();
