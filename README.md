@@ -1,9 +1,3 @@
 # Backend Service for SPDPTC
 
-> [!NOTE]
-Is under development, please check back later. Currently will update `todos` section only (if i'm not lazy too ☺️)
-
-## Todos
-- [ ] Make auth with JWT
-- [ ] Use Turso sqlite as database service
-
+This repository is currently used solely to store source code. All detailed documentation, including endpoint information, OpenAPI schema, and technology stack, can be found in the main repository [SPDPTC/SPDPTC](https://github.com/SPDPTC/SPDPTC), specifically in the `README.md` file. 
